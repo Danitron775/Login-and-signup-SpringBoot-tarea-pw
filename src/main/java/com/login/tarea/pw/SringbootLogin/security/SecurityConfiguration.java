@@ -49,6 +49,7 @@ protected void configure(HttpSecurity http) throws Exception {
         .csrf().disable()
         .authorizeRequests()
             .antMatchers("/signup").permitAll()
+            .antMatchers("/admin").hasRole("ADMIN")
             .anyRequest().authenticated()
         .and()
         .formLogin()
@@ -60,7 +61,7 @@ protected void configure(HttpSecurity http) throws Exception {
             .invalidateHttpSession(true)
             .clearAuthentication(true)
             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-            .logoutSuccessUrl("/login")
+            .logoutSuccessUrl("/login?logout")
             .permitAll();
 }
 }

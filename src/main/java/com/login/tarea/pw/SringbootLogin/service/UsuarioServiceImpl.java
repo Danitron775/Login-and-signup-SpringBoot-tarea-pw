@@ -33,6 +33,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 		this.usuarioRepositorio = usuarioRepositorio;
 	}
 
+	public List<Usuario> getAllUsuarios() {
+		return usuarioRepositorio.findAll();
+	}
+
 	public Usuario guardar(UsuarioRegistroDTO usuarioRegistroDTO) throws UsuarioExistenteException {
 		if (usuarioRepositorio.findByUsername(usuarioRegistroDTO.getUsername()) != null) {
 			throw new UsuarioExistenteException("El nombre de usuario ya existe");

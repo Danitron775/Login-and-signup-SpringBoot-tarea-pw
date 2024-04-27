@@ -13,4 +13,6 @@ public interface UsuarioService extends UserDetailsService{
 	public List<Usuario> listarUsuarios();
 	
 	Usuario findByUsername(String username);
+
+    public List<Usuario> getAllUsuarios();
 }

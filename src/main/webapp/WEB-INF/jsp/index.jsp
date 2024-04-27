@@ -84,7 +84,8 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 								role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								<i class="bi bi-person"></i>
 							</a>
@@ -93,6 +94,11 @@
 								<li><a class="dropdown-item" href="/logout">Cerrar sesión</a></li>
 							</ul>
 						</li>
+						<C:if test="${usuario.roles[0].rol_nombre == 'ROLE_ADMIN'}">
+							<li class="nav-item">
+								<a class="nav-link" href="/admin">Vista de administrador</a>
+							</li>
+						</C:if>
 					</ul>
 				</div>
 			</div>

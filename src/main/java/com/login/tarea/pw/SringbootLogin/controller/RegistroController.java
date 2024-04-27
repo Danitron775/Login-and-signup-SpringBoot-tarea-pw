@@ -1,6 +1,7 @@
 package com.login.tarea.pw.SringbootLogin.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,13 @@ public class RegistroController {
 		Usuario usuario = servicio.findByUsername(username);
 		model.addAttribute("usuario", usuario);
 		return "index";
+	}
+
+	@GetMapping("/admin")
+	public String admin(Model model) {
+		List<Usuario> usuarios = servicio.getAllUsuarios();
+		model.addAttribute("usuarios", usuarios);
+		return "admin";
 	}
 
 }

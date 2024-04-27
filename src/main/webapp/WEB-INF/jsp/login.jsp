@@ -79,28 +79,28 @@ input[type="text"], input[type="password"] {
 
 <body>
 	<div class="container">
-		<h2>Iniciar sesiÃ³n</h2>
+		<h2>Iniciar sesión</h2>
 		<form action="/login" method="post">
 			<div class="form-group">
 				<label for="username">Nombre de usuario:</label> <input type="text"
 					id="username" name="username" required>
 			</div>
 			<div class="form-group">
-				<label for="password">ContraseÃ±a:</label> <input type="password"
+				<label for="password">Contraseña:</label> <input type="password"
 					id="password" name="password" required>
 			</div>
-			<input type="submit" class="btn boton" value="Iniciar sesiÃ³n">
+			<input type="submit" class="btn boton" value="Iniciar sesiónn">
 			<hr>
 			<c:if test="${not empty error}">
 				<div class="alert alert-danger error" role="alert">Error</div>
 			</c:if>
 			<c:if test="${not empty logout}">
-				<div class="alert alert-success" role="alert">Ha cerrado sesiÃ³n
+				<div class="alert alert-success" role="alert">Ha cerrado sesión
 					correctamente</div>
 			</c:if>
 		</form>
 		<div class="form-group">
-			<span><a href="/signup">Registrese aquÃ­</a></span>
+			<span><a href="/signup">Registrese aquí</a></span>
 		</div>
 	</div>
 
