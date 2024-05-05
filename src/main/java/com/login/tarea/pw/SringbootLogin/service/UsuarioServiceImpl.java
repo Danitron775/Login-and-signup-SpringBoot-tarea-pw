@@ -17,21 +17,26 @@ import org.springframework.stereotype.Service;
 import com.login.tarea.pw.SringbootLogin.dto.UsuarioRegistroDTO;
 import com.login.tarea.pw.SringbootLogin.model.Rol;
 import com.login.tarea.pw.SringbootLogin.model.Usuario;
+import com.login.tarea.pw.SringbootLogin.repository.RolRepository;
 import com.login.tarea.pw.SringbootLogin.repository.UsuarioRepository;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired
-	private UsuarioRepository usuarioRepositorio;
+    private UsuarioRepository usuarioRepositorio;
 
-	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private RolRepository rolRepositorio;
 
-	public UsuarioServiceImpl(UsuarioRepository usuarioRepositorio) {
-		super();
-		this.usuarioRepositorio = usuarioRepositorio;
-	}
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    public UsuarioServiceImpl(UsuarioRepository usuarioRepositorio, RolRepository rolRepositorio) {
+        super();
+        this.usuarioRepositorio = usuarioRepositorio;
+        this.rolRepositorio = rolRepositorio;
+    }
 
 	public List<Usuario> getAllUsuarios() {
 		return usuarioRepositorio.findAll();
@@ -41,9 +46,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 		if (usuarioRepositorio.findByUsername(usuarioRegistroDTO.getUsername()) != null) {
 			throw new UsuarioExistenteException("El nombre de usuario ya existe");
 		}
+		Rol userRole = rolRepositorio.findByName("ROLE_USER");
+		if (userRole == null) {
+			throw new RuntimeException("El rol ROLE_USER no se encuentra en la base de datos");
+		}
 		Usuario usuario = new Usuario(usuarioRegistroDTO.getUsername(),
 				passwordEncoder.encode(usuarioRegistroDTO.getPassword()),
-				Arrays.asList(new Rol(usuarioRegistroDTO.getRole())));
+				Arrays.asList(userRole));
 		try {
 			Usuario savedUser = usuarioRepositorio.save(usuario);
 			System.out.println("Usuario guardado: " + savedUser);

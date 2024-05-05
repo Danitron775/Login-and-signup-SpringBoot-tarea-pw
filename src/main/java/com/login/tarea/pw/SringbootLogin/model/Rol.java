@@ -9,6 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Table(name = "rol")
@@ -16,14 +17,15 @@ import lombok.Data;
 public class Rol {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
     private Long rol_id;
 
 	String rol_nombre;
 
 	@OneToMany(mappedBy = "rol")
-	private List<Rol> rol;
+    @ToString.Exclude
+    private List<Rol> rol;
 
 	public Rol(Long rol_id, String rol_nombre) {
 		super();

@@ -4,23 +4,16 @@ import lombok.Data;
 
 @Data
 public class UsuarioRegistroDTO {
-	
-	private String username;
-	private String password;
-	private String role;
+    
+    private String username;
+    private String password;
 
-	
+    public UsuarioRegistroDTO(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
-	public UsuarioRegistroDTO(String username, String password, String role) {
-		this.username = username;
-		this.password = password;
-		this.role = role;
-	}
-
-	public UsuarioRegistroDTO() {
-		super();
-	}
-	
-	
-
+    public UsuarioRegistroDTO() {
+        super();
+    }
 }

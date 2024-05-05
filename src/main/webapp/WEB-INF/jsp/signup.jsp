@@ -92,14 +92,6 @@
 						<label for="password">Contraseña:</label> <input type="password" id="password" name="password"
 							required>
 					</div>
-					<div class="form-group">
-						<label for="role">Rol:</label>
-						<select name="role" id="role" class="form-control">
-							<option value="ROLE_USER">Usuario</option>
-							<option value="ROLE_ADMIN">Administrador</option>
-							<option value="ROLE_EDITOR">Editor</option>
-						</select>
-					</div>
 					<input type="submit" class="btn boton" value="Register">
 					<hr>
 					<c:if test="${not empty successMessage}">
